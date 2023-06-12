@@ -1,4 +1,4 @@
-package com.fitme.api;
+package com.goals.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

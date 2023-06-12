@@ -9,7 +9,8 @@ erDiagram
    Workouts ||--o{ Goals_Workouts: is_in
    Workouts ||--o{ Workouts_Exercises: consists_of
    Exercises ||--o{ Workouts_Exercises: is_in
-   
+   Goals ||--|| Statuses : has
+   Goals_Workouts ||--|| Statuses : has
    Users{
     int id PK
     ind address_id FK
@@ -74,5 +75,11 @@ erDiagram
        text description
        datetime created_at "NOT NULL"
        datetime updated_at "NOT NULL"      
+   }
+   Statuses{
+       int id PK
+       text status "NOT NULL"
+       dateTime created_at "NOT NULL"
+       dateTime updated_at "NOT NULL"
    }
 ```
