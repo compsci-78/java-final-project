@@ -16,9 +16,7 @@ erDiagram
     text first_name "NOT NULL"
     text last_name "NOT NULL"
     text email "NOT NULL"
-    text phone
-    dateTime dbo "NOT NULL"
-    text description
+    text password "NOT NULL"
     DateTime created_at "NOT NULL"
     Datetime updated_at "NOT NULL"
    }
@@ -35,7 +33,7 @@ erDiagram
    Goals {
        int id PK
        int user_id FK
-       int status_id FK
+       int status "NOT NULL"
        DateTime starts_at "NOT NULL"
        DateTime ends_at "NOT NULL"
        Datetime created_at "NOT NULL"
@@ -45,15 +43,14 @@ erDiagram
        int id PK
        int goal_id FK
        int workout_id FK
-       int status_id FK
+       int status "NOT NULL"
        datetime created_at "NOT NULL"
        datetime updated_at "NOT NULL"
    }
    Workouts{
        int id PK
-       int status_id FK
        text name "NOT NULL"
-       text description
+       text type
        datetime created_at "NOT NULL"
        datetime updated_at "NOT NULL"      
    }
@@ -63,8 +60,8 @@ erDiagram
        int exercise_id FK
        int sets
        int reps
+       int rest_mins
        int duration
-       int restMins
        datetime created_at "NOT NULL"
        dateTime updated_at "NOT NULL"
    }
@@ -72,6 +69,9 @@ erDiagram
        int id PK
        text name "NOT NULL"
        text description
+       text muscle_group
+       text image_link
+       text video_link
        datetime created_at "NOT NULL"
        datetime updated_at "NOT NULL"      
    }

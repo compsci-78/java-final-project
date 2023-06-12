@@ -15,6 +15,8 @@ public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Enumerated(EnumType.ORDINAL)
+    private Status status;
     @Column(name = "starts_at")
     private LocalDateTime startsAt;
     @Column(name = "ends_at")
@@ -25,8 +27,6 @@ public class Goal {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @Enumerated(EnumType.ORDINAL)
-    private Status status;
     @OneToMany(mappedBy = "goal")
     private Set<GoalWorkout> goalWorkouts;
 }

@@ -16,7 +16,8 @@ public class WorkoutExercise {
     private int id;
     private int sets;
     private int reps;
-    private int rest;
+    @Column(name = "rest_mins")
+    private int restMins;
     private int duration;
     @Column(name = "created_at")
     @CreationTimestamp

@@ -20,8 +20,7 @@ public class User {
     @Column(name="last_name")
     private String lastName;
     private String email;
-    private String phone;
-    private LocalDate dob;
+    private String password;
     @Column(name="created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;

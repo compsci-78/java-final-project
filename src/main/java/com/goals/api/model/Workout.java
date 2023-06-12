@@ -16,7 +16,7 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String description;
+    private String type;
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
