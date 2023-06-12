@@ -25,7 +25,4 @@ public class Workout {
     private LocalDateTime updatedAt;
     @OneToMany(mappedBy = "workout")
     private Set<GoalWorkout> goalWorkouts;
-    @OneToMany
-    @JoinColumn(name = "status_id",referencedColumnName = "id")
-    private int status_id;
 }

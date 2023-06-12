@@ -14,6 +14,8 @@ public class GoalWorkout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Enumerated(EnumType.ORDINAL)
+    private Status status;
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -26,7 +28,4 @@ public class GoalWorkout {
     @ManyToOne
     @JoinColumn(name="workout_id", referencedColumnName = "id")
     private Workout workout;
-    @OneToOne()
-    @JoinColumn(name = "status_id",referencedColumnName = "id")
-    private Status status;
 }

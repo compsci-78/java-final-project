@@ -25,8 +25,7 @@ public class Goal {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @OneToOne()
-    @JoinColumn(name = "status_id",referencedColumnName = "id")
+    @Enumerated(EnumType.ORDINAL)
     private Status status;
     @OneToMany(mappedBy = "goal")
     private Set<GoalWorkout> goalWorkouts;
