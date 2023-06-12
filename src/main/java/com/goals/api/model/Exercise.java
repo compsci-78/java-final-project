@@ -17,6 +17,12 @@ public class Exercise {
     private int id;
     private String name;
     private String description;
+    @Column(name="muscle_group")
+    private String muscleGroup;
+    @Column(name="image_link")
+    private String imageLink;
+    @Column(name="video_link")
+    private String videoLink;
     @Column(name="created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
