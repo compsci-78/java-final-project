@@ -1,3 +1,5 @@
+# High level story
+This application will help a user to create and keep track of fitness goals. Each goal consists of several workouts that consists of predefined exercises.  
 # ER-Diagram
 ```mermaid
 erDiagram
