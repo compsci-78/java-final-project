@@ -15,7 +15,7 @@ public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Status status;
     @Column(name = "starts_at")
     private LocalDateTime startsAt;
@@ -27,6 +27,9 @@ public class Goal {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+    @ManyToOne
+    @JoinColumn(name="user_id",referencedColumnName = "id")
+    private User user;
     @OneToMany(mappedBy = "goal")
     private Set<GoalWorkout> goalWorkouts;
 }

@@ -14,7 +14,7 @@ public class GoalWorkout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Status status;
     @Column(name = "created_at")
     @CreationTimestamp
