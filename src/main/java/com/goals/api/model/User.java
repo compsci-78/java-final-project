@@ -31,8 +31,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-    @OneToMany(mappedBy = "user")
-    //@JsonIgnoreProperties(value={"user"})
-    private List<Goal> goals;
+//    @OneToMany(mappedBy = "user")
+//    //@JsonIgnoreProperties(value={"user"})
+//    private List<Goal> goals;
 
 }

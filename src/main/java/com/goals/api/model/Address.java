@@ -26,7 +26,7 @@ public class Address {
     @Column(name="updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @OneToOne(mappedBy = "address")
-    private User user;
+//    @OneToOne(mappedBy = "address")
+//    private User user;
 
 }

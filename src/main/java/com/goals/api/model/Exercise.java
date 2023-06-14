@@ -29,6 +29,6 @@ public class Exercise {
     @Column(name="updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @OneToMany (mappedBy = "exercise")
-    private Set<WorkoutExercise> workoutExercise;
+//    @OneToMany (mappedBy = "exercise")
+//    private Set<WorkoutExercise> workoutExercise;
 }
