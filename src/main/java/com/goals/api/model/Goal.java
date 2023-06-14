@@ -1,5 +1,7 @@
 package com.goals.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,6 +17,12 @@ public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne ()
+    @JoinColumn(name="user_id",referencedColumnName = "id")
+    @JsonIgnoreProperties({"address","goals"})
+    private User user;
+
     @Enumerated(EnumType.STRING)
     private Status status;
     @Column(name = "starts_at")
@@ -27,9 +35,8 @@ public class Goal {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @ManyToOne
-    @JoinColumn(name="user_id",referencedColumnName = "id")
-    private User user;
-    @OneToMany(mappedBy = "goal")
-    private Set<GoalWorkout> goalWorkouts;
+
+//    @OneToMany(mappedBy = "goal")
+//    @JsonIgnoreProperties({"goal"})
+//    private Set<GoalWorkout> goalWorkouts;
 }

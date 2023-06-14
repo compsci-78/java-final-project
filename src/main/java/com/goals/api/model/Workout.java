@@ -1,5 +1,6 @@
 package com.goals.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,6 +24,7 @@ public class Workout {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
     @OneToMany(mappedBy = "workout")
     private Set<GoalWorkout> goalWorkouts;
 }
