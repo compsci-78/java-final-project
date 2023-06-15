@@ -6,7 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,6 +29,6 @@ public class Exercise {
     @Column(name="updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-//    @OneToMany (mappedBy = "exercise")
-//    private Set<WorkoutExercise> workoutExercise;
+    @OneToMany (mappedBy = "exercise")
+    private List<WorkoutExercise> workoutExercise;
 }

@@ -27,11 +27,11 @@ public class GoalWorkout {
 
     @ManyToOne()
     @JoinColumn(name="goal_id", referencedColumnName = "id")
-    //@JsonIgnoreProperties("goalWorkouts")
+    @JsonIgnoreProperties("goalWorkouts")
     private Goal goal;
 
     @ManyToOne()
     @JoinColumn(name="workout_id", referencedColumnName = "id")
-    //@JsonIgnoreProperties("goalWorkouts")
+    @JsonIgnoreProperties("goalWorkouts")
     private Workout workout;
 }

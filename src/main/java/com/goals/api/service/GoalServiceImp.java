@@ -1,6 +1,5 @@
 package com.goals.api.service;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.goals.api.model.*;
 import com.goals.api.model.dto.CreateGoalDto;
 import com.goals.api.model.dto.UpdateGoalDto;
@@ -9,7 +8,6 @@ import com.goals.api.repository.GoalRepository;
 import com.goals.api.repository.GoalWorkoutRepository;
 import com.goals.api.repository.UserRepository;
 import com.goals.api.repository.WorkoutRepository;
-import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -141,13 +139,15 @@ public class GoalServiceImp implements GoalService{
     public List<GoalWorkout> getGoalWorkouts(Integer id){
         goalRepository.findById(id).orElseThrow(
                 ()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"No goal matches the provided id"));
-        return goalWorkoutRepository.findByGaolId(id);
+        return goalWorkoutRepository.findByGoalId(id);
     }
     @Override
     public GoalWorkout updateGoalWorkout(Integer goalId,Integer goalWorkoutId, UpdateGoalWorkoutDto entity){
 
-        Status status=null;
-        if (!entity.status().equals(Status.PENDING)&& !entity.status().equals(Status.COMPLETED))
+        Status status = Status.valueOf(entity.status());
+
+        //if (!entity.status().equals(Status.PENDING)&& !entity.status().equals(Status.COMPLETED))
+        if (!status.equals(Status.PENDING)&& !status.equals(Status.COMPLETED))
         {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Invalid status");
         }
@@ -163,7 +163,8 @@ public class GoalServiceImp implements GoalService{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No goal and goalWorkout matches the provided id's");
         }
 
-        foundGoalWorkout.setStatus(entity.status());
+        //foundGoalWorkout.setStatus(entity.status());
+        foundGoalWorkout.setStatus(status);
 
         return goalWorkoutRepository.save(foundGoalWorkout);
     }

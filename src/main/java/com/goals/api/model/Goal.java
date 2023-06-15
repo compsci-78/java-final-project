@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,6 +39,6 @@ public class Goal {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "goal")
-    //@JsonIgnoreProperties({"goal"})
-    private Set<GoalWorkout> goalWorkouts;
+    @JsonIgnoreProperties({"goal"})
+    private List<GoalWorkout> goalWorkouts;
 }

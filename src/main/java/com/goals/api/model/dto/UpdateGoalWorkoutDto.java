@@ -7,5 +7,5 @@ import jakarta.validation.constraints.NotNull;
 public record UpdateGoalWorkoutDto(
         @NotNull(message = "should not be null")
         @NotBlank(message = "should not be empty")
-        Status status) {
+        String status) {
 }
