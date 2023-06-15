@@ -25,6 +25,6 @@ public class Workout {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-//    @OneToMany(mappedBy = "workout")
-//    private Set<GoalWorkout> goalWorkouts;
+    @OneToMany(mappedBy = "workout")
+    private Set<GoalWorkout> goalWorkouts;
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -26,9 +27,9 @@ public class Goal {
     @Enumerated(EnumType.STRING)
     private Status status;
     @Column(name = "starts_at")
-    private LocalDateTime startsAt;
+    private Date startsAt;
     @Column(name = "ends_at")
-    private LocalDateTime endsAt;
+    private Date endsAt;
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -36,7 +37,7 @@ public class Goal {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-//    @OneToMany(mappedBy = "goal")
-//    @JsonIgnoreProperties({"goal"})
-//    private Set<GoalWorkout> goalWorkouts;
+    @OneToMany(mappedBy = "goal")
+    //@JsonIgnoreProperties({"goal"})
+    private Set<GoalWorkout> goalWorkouts;
 }
