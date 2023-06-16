@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,11 @@ public class Workout {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "workout")
-    private Set<GoalWorkout> goalWorkouts;
+//    @OneToMany(mappedBy = "workout")
+//    @JsonIgnoreProperties({"goal","workout"})
+//    private List<GoalWorkout> goalWorkouts;
+
+    @OneToMany( mappedBy= "workout")
+    @JsonIgnoreProperties({"workout"})
+    private List<WorkoutExercise> workoutExercises;
 }

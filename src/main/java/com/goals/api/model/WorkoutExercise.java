@@ -1,5 +1,6 @@
 package com.goals.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -32,5 +33,6 @@ public class WorkoutExercise {
 
     @ManyToOne ()
     @JoinColumn(name="exercise_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"workoutExercises"})
     private Exercise exercise;
 }

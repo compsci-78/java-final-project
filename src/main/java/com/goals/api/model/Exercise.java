@@ -30,5 +30,5 @@ public class Exercise {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     @OneToMany (mappedBy = "exercise")
-    private List<WorkoutExercise> workoutExercise;
+    private List<WorkoutExercise> workoutExercises;
 }
