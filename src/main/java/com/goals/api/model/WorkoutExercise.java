@@ -25,9 +25,11 @@ public class WorkoutExercise {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
     @ManyToOne ()
     @JoinColumn(name="workout_id", referencedColumnName = "id")
     private Workout workout;
+
     @ManyToOne ()
     @JoinColumn(name="exercise_id", referencedColumnName = "id")
     private Exercise exercise;

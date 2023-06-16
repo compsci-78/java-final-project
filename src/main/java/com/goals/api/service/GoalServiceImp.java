@@ -70,7 +70,9 @@ public class GoalServiceImp implements GoalService{
                     return gw;
                 } ).toList();
 
-        goalWorkoutRepository.saveAll(goalWorkouts);
+        // Save the goalWorkout and set goal goalWorkouts. This is necessary as
+        // GoalWorkouts is ignored in goal
+        createdGoal.setGoalWorkouts(goalWorkoutRepository.saveAll(goalWorkouts));
 
         return createdGoal;
     }
@@ -94,28 +96,38 @@ public class GoalServiceImp implements GoalService{
         Goal foundGoal = goalRepository.findById(id)
                 .orElseThrow(()-> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,"No goal matches the provided id"));
+
+        if(goalWorkoutRepository.findByGoalId(id).stream().findAny().isPresent()){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,"Please check no goalWorkout attached to the goal");
+        }
+
         goalRepository.delete(foundGoal);
         return foundGoal;
     }
     @Override
-    public GoalWorkout addWorkout(Integer goalId, Integer workoutId){
+    public List<GoalWorkout> addWorkouts(Integer goalId, Integer [] workoutIds){
         Goal foundGoal = goalRepository.findById(goalId)
                 .orElseThrow(()-> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,"No goal matches the provided id"));
 
-        Workout foundWorkout =workoutRepository.findById(workoutId)
-                .orElseThrow(()-> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,"No workout matches the provided id"));
+       List<GoalWorkout> goalWorkouts = Arrays.stream(workoutIds).map(id->
+       {
+           Workout foundWorkout =  workoutRepository.findById(id).orElseThrow(()->
+                   new ResponseStatusException(
+                           HttpStatus.NOT_FOUND,"No workout matches the provided id"+id));
 
-        GoalWorkout goalWorkout = new GoalWorkout();
-        goalWorkout.setStatus(Status.PENDING);
-        goalWorkout.setGoal(foundGoal);
-        goalWorkout.setWorkout(foundWorkout);
+           GoalWorkout goalWorkout = new GoalWorkout();
+           goalWorkout.setStatus(Status.PENDING);
+           goalWorkout.setGoal(foundGoal);
+           goalWorkout.setWorkout(foundWorkout);
+           return  goalWorkout;
+       }).toList();
 
-        return goalWorkoutRepository.save(goalWorkout);
+       return goalWorkoutRepository.saveAll(goalWorkouts);
     }
     @Override
-    public List<GoalWorkout> removeGoalWorkout(Integer goalId, Integer[] goalWorkoutIds) {
+    public List<GoalWorkout> removeGoalWorkouts(Integer goalId, Integer[] goalWorkoutIds) {
         Goal foundGoal = goalRepository.findById(goalId)
                 .orElseThrow(()-> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,"No goal matches the provided id"));
@@ -152,7 +164,7 @@ public class GoalServiceImp implements GoalService{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Invalid status");
         }
 
-        Goal foundGoal = goalRepository.findById(goalWorkoutId).orElseThrow(
+        Goal foundGoal = goalRepository.findById(goalId).orElseThrow(
                 ()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"No goal matches the provided id"));
 
         GoalWorkout foundGoalWorkout =  goalWorkoutRepository.findById(goalWorkoutId).orElseThrow(

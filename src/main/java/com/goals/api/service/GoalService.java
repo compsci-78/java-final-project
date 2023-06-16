@@ -12,9 +12,9 @@ import java.util.List;
 public interface GoalService extends BasicService<Goal,Integer> {
     Goal update(Integer id, UpdateGoalDto updateGoalDto);
     Goal create(CreateGoalDto createGoalDto);
-    GoalWorkout addWorkout(Integer goalId, Integer workoutId);
+    List<GoalWorkout> addWorkouts(Integer goalId, Integer [] workoutId);
     GoalWorkout updateGoalWorkout(Integer goalId,Integer goalWorkoutId, UpdateGoalWorkoutDto entity);
-    List<GoalWorkout> removeGoalWorkout(Integer goalId, Integer [] workouts);
+    List<GoalWorkout> removeGoalWorkouts(Integer goalId, Integer [] workouts);
     List<GoalWorkout> getGoalWorkouts(Integer goalId );
 
 }
